@@ -1,0 +1,4 @@
+imageName: evestidor/ui
+serviceName: evestidor-ui
+server:
+  replicaCount: 1
