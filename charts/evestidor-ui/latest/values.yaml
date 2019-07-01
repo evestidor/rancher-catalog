@@ -2,6 +2,6 @@ service:
   name: evestidor-ui
   port: 80
 config:
-  host: evestidor.com
+  host: evestidor.com.br
   replicas: 1
   image: evestidor/ui:master
