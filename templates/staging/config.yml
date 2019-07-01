@@ -1,0 +1,4 @@
+name: system staging
+description: Non-production environment.
+version: v0.0.1
+category: Apps

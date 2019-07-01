@@ -1,0 +1,96 @@
+.catalog:
+  name: staging
+  version: v0.0.1
+  description: Non-production environment.
+  uuid: evestidor-staging
+  minimum_rancher_version: v1.6.0
+  questions:
+    - variable: hostname
+      label: Hostname
+      required: true
+      default: "name.staging.evestidor.com"
+      type: string
+
+    - variable: host_group
+      label: Rancher host affinity
+      description: The host group label to put these servers on.
+      required: true
+      default: "staging-hosts"
+
+version: "2"
+services:
+
+  stacklb:
+    scale: 1
+    lb_config:
+      port_rules:
+        - source_port: 80
+          target_port: 8000
+          path: "/"
+          service: evestidor-ui
+          priority: 1
+        - source_port: 80
+          target_port: 8000
+          path: "/api"
+          service: evestidor-api-gateway
+          priority: 1
+      health_check:
+        port: 42
+        interval: 2000
+        unhealthy_threshold: 3
+        healthy_threshold: 2
+        response_timeout: 2000
+      upgrade_strategy:
+        start_first: true
+
+  evestidor-ui:
+    scale: 1
+    start_on_create: true
+    health_check:
+      port: 5432
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+    upgrade_strategy:
+      start_first: true
+
+  evestidor-api-gateway:
+    scale: 1
+    start_on_create: true
+    health_check:
+      port: 5432
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+    upgrade_strategy:
+      start_first: true
+
+  evestidor-event-stream:
+    scale: 1
+    start_on_create: true
+    health_check:
+      port: 5432
+      interval: 2000
+      unhealthy_threshold: 3
+      strategy: recreate
+    upgrade_strategy:
+      start_first: true
+
+
+  evestidor-stock-manager:
+    scale: 1
+    start_on_create: true
+    upgrade_strategy:
+      start_first: true
+
+  evestidor-stock-manager-consumer:
+    scale: 1
+    start_on_create: true
+    upgrade_strategy:
+      start_first: true
+
+  evestidor-stock-price-simulator:
+    scale: 1
+    start_on_create: true
+    upgrade_strategy:
+      start_first: true

@@ -1,0 +1,66 @@
+x-log-options: &log-options
+  logging:
+    options:
+      max-size: "50M"
+version: '2'
+services:
+
+  stacklb:
+    <<: *log-options
+    image: rancher/lb-service-haproxy:v0.9.6
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+
+  evestidor-ui:
+    <<: *log-options
+    image: evestidor/ui:master
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+      io.rancher.container.pull_image: always
+    restart: unless-stopped
+
+  evestidor-api-gateway:
+    <<: *log-options
+    image: evestidor/api-gateway:master
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+      io.rancher.container.pull_image: always
+    restart: unless-stopped
+
+  evestidor-event-stream:
+    <<: *log-options
+    image: evestidor/event-stream:master
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+      io.rancher.container.pull_image: always
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "SWQOKODSQALRPCLNMEQG"
+      RABBITMQ_DEFAULT_USER: "guest"
+      RABBITMQ_DEFAULT_PASS: "guest"
+      RABBITMQ_DEFAULT_VHOST: "/"
+      RABBITMQ_SERVER_ADDITIONAL_ERL_ARGS: "-rabbit log_levels [{connection,error}]"
+
+  evestidor-stock-manager:
+    <<: *log-options
+    image: evestidor/stock-manager:master
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+      io.rancher.container.pull_image: always
+    restart: unless-stopped
+
+  evestidor-stock-manager-consumer:
+    <<: *log-options
+    image: evestidor/stock-manager:master
+    command: python manage.py consume_prices
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+      io.rancher.container.pull_image: always
+    restart: unless-stopped
+
+  evestidor-stock-price-simulator:
+    <<: *log-options
+    image: evestidor/stock-price-simulator:local
+    labels:
+      io.rancher.scheduler.affinity:host_label: host_group=${host_group}
+      io.rancher.container.pull_image: always
+    restart: unless-stopped
