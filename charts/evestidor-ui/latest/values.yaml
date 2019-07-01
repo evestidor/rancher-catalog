@@ -1,6 +1,6 @@
 service:
   name: evestidor-ui
-  port: 80
+  port: 8000
 config:
   host: evestidor.com.br
   replicas: 1
