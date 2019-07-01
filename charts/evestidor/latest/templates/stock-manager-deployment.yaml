@@ -1,17 +1,3 @@
-apiVersion: v1
-kind: Service
-metadata:
-  name: {{ .Values.stockManager.name }}
-
-spec:
-  type: ClusterIP
-  selector:
-    app: {{ .Values.stockManager.name }}
-  ports:
-    - name: http
-      port: {{ .Values.stockManager.port }}
-      targetPort: {{ .Values.stockManager.targetPort }}
-
 apiVersion: apps/v1
 kind: Deployment
 metadata:
