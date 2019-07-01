@@ -4,12 +4,13 @@ metadata:
   name: {{ .Values.ui.name }}
   annotations:
     nginx.ingress.kubernetes.io/rewrite-target: /api
+    kubernetes.io/ingress.global-static-ip-name: "evestidor"
 spec:
   rules:
     - host: {{ .Values.globals.host }}
       http:
         paths:
-          - path: /
+          - path: /*
             backend:
               serviceName: {{ .Values.ui.name }}
               servicePort: {{ .Values.ui.port }}

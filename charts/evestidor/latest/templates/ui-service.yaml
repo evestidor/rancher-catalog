@@ -2,11 +2,11 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.ui.name }}
+  annotations:
+    beta.cloud.google.com/backend-config: '{"ports": {"80":"evestidor-ui"}}'
 spec:
-  type: LoadBalancer
-  selector:
-    app: {{ .Values.ui.name }}
+  type: NodePort
   ports:
-    - name: http
-      port: {{ .Values.ui.port }}
-      targetPort: {{ .Values.ui.targetPort }}
+  - port: {{ .Values.ui.port }}
+    protocol: TCP
+    targetPort: {{ .Values.ui.targetPort }}
