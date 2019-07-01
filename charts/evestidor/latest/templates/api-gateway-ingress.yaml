@@ -9,7 +9,7 @@ spec:
     - host: {{ .Values.globals.host }}
       http:
         paths:
-          - path: /
+          - path: /api
             backend:
               serviceName: {{ .Values.apiGateway.name }}
               servicePort: {{ .Values.apiGateway.port }}
