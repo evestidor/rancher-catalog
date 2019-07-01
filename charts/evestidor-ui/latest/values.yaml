@@ -1,7 +1,0 @@
-service:
-  name: evestidor-ui
-  port: 8000
-config:
-  host: evestidor.com.br
-  replicas: 1
-  image: evestidor/ui:master

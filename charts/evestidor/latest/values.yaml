@@ -1,0 +1,29 @@
+globals:
+  host: evestidor.com.br
+
+ui:
+  image: evestidor/ui:master
+  name: evestidor-ui
+  port: 80
+  targetPort: 8000
+  replicas: 1
+
+apiGateway:
+  image: evestidor/api-gateway:master
+  name: evestidor-api-gateway
+  port: 80
+  targetPort: 8000
+  replicas: 1
+
+eventStream:
+  image: evestidor/api-gateway:master
+  name: evestidor-api-gateway
+  port: 8000
+  replicas: 1
+
+stockManager:
+  image: evestidor/stock-manager:master
+  name: evestidor-stock-manager
+  port: 80
+  targetPort: 8000
+  replicas: 1
