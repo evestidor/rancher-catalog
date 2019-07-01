@@ -16,8 +16,8 @@ apiGateway:
   replicas: 1
 
 eventStream:
-  image: evestidor/api-gateway:master
-  name: evestidor-api-gateway
+  image: evestidor/event-stream:master
+  name: evestidor-event-stream
   port: 8000
   replicas: 1
 
