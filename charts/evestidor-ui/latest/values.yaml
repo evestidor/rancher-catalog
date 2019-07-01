@@ -1,4 +1,5 @@
 imageName: evestidor/ui:master
 serviceName: evestidor-ui
+servicePort: 80
 server:
   replicaCount: 1

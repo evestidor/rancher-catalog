@@ -1,0 +1,15 @@
+apiVersion: apps/v1
+kind: Ingress
+metadata:
+  name: {{ .Values.serviceName }}
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+    - host: evestidor.com
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: {{ .Values.serviceName }}
+              servicePort: {{ .Values.servicePort }}
