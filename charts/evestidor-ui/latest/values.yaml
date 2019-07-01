@@ -1,5 +1,7 @@
-imageName: evestidor/ui:master
-serviceName: evestidor-ui
-servicePort: 80
-server:
-  replicaCount: 1
+service:
+  name: evestidor-ui
+  port: 80
+config:
+  host: evestidor.com
+  replicas: 1
+  image: evestidor/ui:master

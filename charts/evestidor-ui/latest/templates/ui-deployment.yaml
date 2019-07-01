@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.serviceName }}
+  name: {{ .Values.service.name }}
 
 spec:
-  replicas: {{ .Values.server.replicaCount }}
+  replicas: {{ .Values.config.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.serviceName }}
+      app: {{ .Values.service.name }}
 
   template:
     metadata:
       labels:
-        app: {{ .Values.serviceName }}
+        app: {{ .Values.service.name }}
     spec:
       containers:
-        - name: {{ .Values.serviceName }}
-          image: {{ .Values.imageName }}
+        - name: {{ .Values.service.name }}
+          image: {{ .Values.config.image }}
