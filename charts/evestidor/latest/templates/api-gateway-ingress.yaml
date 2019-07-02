@@ -2,8 +2,6 @@ apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ .Values.apiGateway.name }}
-  annotations:
-    nginx.ingress.kubernetes.io/rewrite-target: /api
 spec:
   rules:
     - host: {{ .Values.globals.host }}
