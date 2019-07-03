@@ -15,3 +15,7 @@ spec:
       containers:
         - name: {{ .Values.apiGateway.name }}
           image: {{ .Values.apiGateway.image }}
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.globals.configMap }}

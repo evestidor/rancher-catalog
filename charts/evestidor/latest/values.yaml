@@ -1,5 +1,6 @@
 globals:
   host: evestidor.com.br
+  configMap: evestidor
 
 ui:
   image: evestidor/ui:master
@@ -24,6 +25,13 @@ eventStream:
 stockManager:
   image: evestidor/stock-manager:master
   name: evestidor-stock-manager
+  port: 80
+  targetPort: 8000
+  replicas: 1
+
+stocPrice:
+  image: evestidor/stock-price-simulator:master
+  name: evestidor-stock-price-simulator
   port: 80
   targetPort: 8000
   replicas: 1

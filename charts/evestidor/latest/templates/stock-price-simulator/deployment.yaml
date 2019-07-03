@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.stockManager.name }}
+  name: {{ .Values.stockPrice.name }}
 spec:
-  replicas: {{ .Values.stockManager.replicas }}
+  replicas: {{ .Values.stockPrice.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.stockManager.name }}
+      app: {{ .Values.stockPrice.name }}
 
   template:
     metadata:
       labels:
-        app: {{ .Values.stockManager.name }}
+        app: {{ .Values.stockPrice.name }}
     spec:
       containers:
-        - name: {{ .Values.stockManager.name }}
-          image: {{ .Values.stockManager.image }}
+        - name: {{ .Values.stockPrice.name }}
+          image: {{ .Values.stockPrice.image }}
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
