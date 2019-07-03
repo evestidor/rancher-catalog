@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: evestidor
+data:
+  debug: false
+  environment: sandbox
+  allowed_hosts: '["*"]'
+  use_whitenoise: true
+  sentry_dsn: https://865b5910d8644b5b882963e27a99f5c2@sentry.io/1495654
+  database_url: sqlite:///local.db
+  ui.secret: secret1
+  eventStream.secret: secret2
+  stockManager.secret: secret3
+  apiGateway.secret: secret4
