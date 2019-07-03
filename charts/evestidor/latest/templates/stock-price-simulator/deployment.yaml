@@ -13,6 +13,13 @@ spec:
       labels:
         app: {{ .Values.stockPrice.name }}
     spec:
+      initContainers:
+        - name: init-wait-db
+          image: busybox:1.28
+          command: ['sh', '-c', 'until nslookup databases; do echo waiting for mydb; sleep 2; done;']
+        - name: init-migrate
+          image: busybox:1.28
+          command: python manage.py migrate
       containers:
         - name: {{ .Values.stockPrice.name }}
           image: {{ .Values.stockPrice.image }}
