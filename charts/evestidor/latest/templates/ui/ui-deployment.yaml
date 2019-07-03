@@ -19,3 +19,5 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ .Values.globals.configMap }}
+            - configMapRef:
+                name: {{ .Values.ui.configMap }}

@@ -1,6 +1,6 @@
 globals:
   host: evestidor.com.br
-  configMap: evestidor
+  configMap: globals
 
 ui:
   image: evestidor/ui:master
@@ -8,6 +8,7 @@ ui:
   port: 80
   targetPort: 8000
   replicas: 1
+  configMap: ui
 
 apiGateway:
   image: evestidor/api-gateway:master
@@ -19,7 +20,7 @@ apiGateway:
 eventStream:
   image: evestidor/event-stream:master
   name: evestidor-event-stream
-  port: 8000
+  port: 5672
   replicas: 1
 
 stockManager:
@@ -28,6 +29,7 @@ stockManager:
   port: 80
   targetPort: 8000
   replicas: 1
+  configMap: stock-manager
 
 stockPrice:
   image: evestidor/stock-price-simulator:master

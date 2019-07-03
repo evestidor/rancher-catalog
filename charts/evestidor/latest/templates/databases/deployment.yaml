@@ -1,0 +1,18 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: databases
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: databases
+
+  template:
+    metadata:
+      labels:
+        app: databases
+    spec:
+      containers:
+        - name: databases
+          image: postgres:10-alpine

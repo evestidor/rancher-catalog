@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: ui
+data:
+  USE_WHITENOISE: "true"
+  API_GATEWAY_URL: https://evestidor.com.br/api/
