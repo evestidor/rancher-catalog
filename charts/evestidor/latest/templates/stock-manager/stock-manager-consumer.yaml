@@ -16,6 +16,11 @@ spec:
       initContainers:
         - name: init-migrate
           image: {{ .Values.stockManager.image }}
+          envFrom:
+            - configMapRef:
+                name: {{ .Values.globals.configMap }}
+            - configMapRef:
+                name: {{ .Values.stockManager.configMap }}
           command:
             - python
             - manage.py

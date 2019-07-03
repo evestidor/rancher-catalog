@@ -3,4 +3,4 @@ kind: ConfigMap
 metadata:
   name: stock-manager
 data:
-  databaseUrl: postgresql://postgres@databases/stock-manager
+  DATABASE_URL: postgresql://postgres@databases/stock-manager
