@@ -15,39 +15,6 @@ spec:
       containers:
         - name: {{ .Values.ui.name }}
           image: {{ .Values.ui.image }}
-          env:
-            - name: DEBUG
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: debug
-            - name: ENVIRONMENT
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: environment
-            - name: ALLOWED_HOSTS
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: allowed_hosts
-            - name: USE_WHITENOISE
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: use_whitenoise
-            - name: SENTRY_DSN
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: sentry_dsn
-            - name: DATABASE_URL
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: database_url
-            - name: SECRET_KEY
-              valueFrom:
-                configMapKeyRef:
-                  name: evestidor
-                  key: ui.secret
+          envFrom:
+            - configMapRef:
+                name: evestidor
