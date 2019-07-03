@@ -29,7 +29,7 @@ stockManager:
   targetPort: 8000
   replicas: 1
 
-stocPrice:
+stockPrice:
   image: evestidor/stock-price-simulator:master
   name: evestidor-stock-price-simulator
   port: 80
