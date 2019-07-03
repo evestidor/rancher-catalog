@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.stockManager.name }}
+  name: {{ .Values.stockManager.name }}-consumer
 spec:
   replicas: {{ .Values.stockManager.replicas }}
   selector:
@@ -13,11 +13,15 @@ spec:
       labels:
         app: {{ .Values.stockManager.name }}
     spec:
+      initContainers:
+        - name: init-migrate
+          image: {{ .Values.stockManager.image }}
+          command: python manage.py migrate
       containers:
         - name: {{ .Values.stockManager.name }}
           image: {{ .Values.stockManager.image }}
           imagePullPolicy: Always
-          command: "python manage.py consume_prices"
+          command: python manage.py consume_prices
           envFrom:
             - configMapRef:
                 name: {{ .Values.globals.configMap }}
