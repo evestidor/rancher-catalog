@@ -14,8 +14,8 @@ spec:
         app: {{ .Values.stockPrice.name }}
     spec:
       - name: init-migrate
-          image: {{ .Values.stockManager.image }}
-          command: python manage.py migrate
+        image: {{ .Values.stockManager.image }}
+        command: python manage.py migrate
       containers:
         - name: {{ .Values.stockPrice.name }}
           image: {{ .Values.stockPrice.image }}
