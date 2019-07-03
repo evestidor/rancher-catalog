@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: evestidor-sandbox
+data:
+  ALLOWED_HOSTS: '["*"]'
+  DATABASE_URL: sqlite:///local.db
+  DEBUG: "false"
+  ENVIRONMENT: sandbox
+  SECRET_KEY: secret1
+  SENTRY_DSN: https://865b5910d8644b5b882963e27a99f5c2@sentry.io/1495654
+  USE_WHITENOISE: "true"
