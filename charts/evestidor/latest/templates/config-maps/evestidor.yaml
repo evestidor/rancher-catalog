@@ -1,11 +1,12 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: ConfigMap
 metadata:
   name: evestidor
+  namespace: default
 data:
   DEBUG: false
   ENVIRONMENT: sandbox
-  ALLOWED_HOSTS: '["*"]'
+  ALLOWED_HOSTS: ["*"]
   USE_WHITENOISE: true
   SENTRY_DSN: https://865b5910d8644b5b882963e27a99f5c2@sentry.io/1495654
   DATABASE_URL: sqlite:///local.db
