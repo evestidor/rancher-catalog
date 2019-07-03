@@ -7,7 +7,7 @@ spec:
     - host: {{ .Values.globals.host }}
       http:
         paths:
-          - path: /
+          - path: /app
             backend:
               serviceName: {{ .Values.ui.name }}
               servicePort: {{ .Values.ui.port }}
