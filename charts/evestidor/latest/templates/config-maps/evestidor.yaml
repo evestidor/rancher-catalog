@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: evestidor
 data:
-  ALLOWED_HOSTS: '["*"]'
+  ALLOWED_HOSTS: '*'
   DATABASE_URL: sqlite:///local.db
   DEBUG: "false"
   ENVIRONMENT: sandbox
