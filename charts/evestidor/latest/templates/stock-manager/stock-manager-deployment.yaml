@@ -17,7 +17,9 @@ spec:
         - name: init-migrate
           image: {{ .Values.stockManager.image }}
           command:
-            - python manage.py migrate
+            - python
+            - manage.py
+            - migrate
       containers:
         - name: {{ .Values.stockManager.name }}
           image: {{ .Values.stockManager.image }}
